@@ -1,0 +1,33 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]  # Run when code is pushed to main
+  pull_request:
+    branches: [ "main" ]  # Or pull requests to main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # GitHub gives you a Linux VM
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Build User Service
+      run: mvn clean install -f user-service/pom.xml
+
+    - name: Build Expense Service
+      run: mvn clean install -f expense-service/pom.xml
+
+    - name: Build Billing Service
+      run: mvn clean install -f billing-service/pom.xml
+
+    - name: Build Report Service
+      run: mvn clean install -f report-service/pom.xml
