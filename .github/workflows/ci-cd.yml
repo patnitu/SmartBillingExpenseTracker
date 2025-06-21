@@ -2,9 +2,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]  # Run when code is pushed to main
+    branches: [ "master" ]  # Run when code is pushed to main
   pull_request:
-    branches: [ "main" ]  # Or pull requests to main
+    branches: [ "master" ]  # Or pull requests to main
 
 jobs:
   build:
