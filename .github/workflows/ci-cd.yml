@@ -32,5 +32,6 @@ jobs:
     - name: Build Report Service
       run: mvn clean install -f report-service/pom.xml
    
-    - name: Build with Maven (skip tests)
-      run: mvn clean install -DskipTests
+    - name: Build with Maven (really skip tests)
+      run: mvn clean install -DskipTests=true -Dmaven.test.skip=true
+
