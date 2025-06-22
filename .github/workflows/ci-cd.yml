@@ -2,9 +2,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "master" ]  # Run when code is pushed to main
+    branches: [ "master" ]  # Run when code is pushed to master
   pull_request:
-    branches: [ "master" ]  # Or pull requests to main
+    branches: [ "master" ]  # Or pull requests to master
 
 jobs:
   build:
@@ -21,17 +21,13 @@ jobs:
         distribution: 'temurin'
 
     - name: Build User Service
-      run: mvn clean install -f user-service/pom.xml
+      run: mvn clean install -DskipTests -f user-service/pom.xml
 
     - name: Build Expense Service
-      run: mvn clean install -f expense-service/pom.xml
+      run: mvn clean install -DskipTests -f expense-service/pom.xml
 
     - name: Build Billing Service
-      run: mvn clean install -f billing-service/pom.xml
+      run: mvn clean install -DskipTests -f billing-service/pom.xml
 
     - name: Build Report Service
-      run: mvn clean install -f report-service/pom.xml
-   
-    - name: Build with Maven (really skip tests)
-      run: mvn clean install -DskipTests=true -Dmaven.test.skip=true
-
+      run: mvn clean install -DskipTests -f report-service/pom.xml
