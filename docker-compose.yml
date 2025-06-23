@@ -5,8 +5,8 @@ services:
     image: postgres:15
     container_name: postgres-db
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypass
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: tiger
     ports:
       - "5432:5432"
     volumes:
@@ -23,6 +23,8 @@ services:
       - postgres-db
     networks:
       - backend
+    restart: unless-stopped
+
 
   user-service:
     build: ./user-service
@@ -36,6 +38,7 @@ services:
       - postgres-db
     networks:
       - backend
+    restart: unless-stopped
 
   expense-service:
     build: ./expense-service
@@ -49,6 +52,7 @@ services:
       - postgres-db
     networks:
       - backend
+    restart: unless-stopped
 
   billing-service:
     build: ./billing-service
@@ -62,6 +66,7 @@ services:
       - postgres-db
     networks:
       - backend
+    restart: unless-stopped
 
   report-service:
     build: ./report-service
@@ -75,7 +80,7 @@ services:
       - postgres-db
     networks:
       - backend
-
+    restart: unless-stopped
   api-gateway:
     build: ./api-gateway
     container_name: api-gateway
@@ -91,7 +96,7 @@ services:
       - report-service
     networks:
       - backend
-
+    restart: unless-stopped
 networks:
   backend:
     driver: bridge
