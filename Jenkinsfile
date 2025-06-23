@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git credentialsId: 'github-token', url: 'https://github.com/patnitu/SmartBillingExpenseTracker.git', branch: 'main'
+                git credentialsId: 'github-creds', url: 'https://github.com/patnitu/SmartBillingExpenseTracker.git', branch: 'main'
             }
         }
 
